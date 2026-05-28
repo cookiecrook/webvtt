@@ -1522,10 +1522,14 @@ the start of a <a>WebVTT file</a>, immediately following the <code>WEBVTT</code>
 line and terminated by a blank line. It is represented as an ordered list of (key, value) string
 pairs.</p>
 
-<p>The keys listed below are reserved by this specification. Their values, when present, give
-the named property of the <a>WebVTT header metadata</a>; any pair whose key is not in this list
-is an <dfn>unrecognized header metadata pair</dfn> and is preserved for use by the consuming
-application.</p>
+<p>The keys listed below are reserved by this specification. Any pair whose key is not reserved
+but which satisfies the syntactic requirements for an unreserved key (see [[#syntax]] —
+in particular, the requirement that the key contain a U+002D HYPHEN-MINUS character and not
+start with one) is an <dfn>unrecognized header metadata pair</dfn> and is preserved for use by
+the consuming application. Pairs whose keys do not satisfy those requirements are dropped by
+the parser and not exposed to the consuming application; this reserves the unhyphenated
+key-name space for future standardization and prevents arbitrary applications from claiming
+short, unnamespaced keys.</p>
 
 <dl>
 
@@ -1552,19 +1556,19 @@ application.</p>
 
  <dt><dfn lt="WebVTT header metadata type">type</dfn></dt>
  <dd>
-  <p>An identifier for the schema or application that the <a lt="WebVTT metadata cue">metadata
-  cues</a> or <a lt="unrecognized header metadata pair">unrecognized header metadata pairs</a>
-  conform to. Disambiguates between different uses of <code>kind: metadata</code> and is the
-  primary mechanism for addressing the format ambiguity described in
-  <a href="https://github.com/w3c/webvtt/issues/511">WebVTT issue #511</a>.</p>
+  <p>Reserved by this specification as the key used to identify the schema or application that
+  the <a lt="WebVTT metadata cue">metadata cues</a> or
+  <a lt="unrecognized header metadata pair">unrecognized header metadata pairs</a> conform to.</p>
+  <p class="note">This specification does not itself define any values for <code>type</code>;
+  the name is reserved so that a follow-up specification can define a registry of
+  <code>type</code> values without colliding with author-defined keys. The first such value is
+  expected to be defined alongside the time-coded flashing-content metadata work in
+  <a href="https://github.com/w3c/webvtt/issues/512">WebVTT issue #512</a> (e.g.
+  <code>video.strobing.general-flash</code>). Until at least one value is registered, the
+  <code>type</code> key has no defined behavior beyond reserving the name.</p>
  </dd>
 
 </dl>
-
-<p class="note">A future revision of this specification, tracked in
-<a href="https://github.com/w3c/webvtt/issues/512">WebVTT issue #512</a>, is expected to
-register additional <code>type</code> values and to define taxonomies of related keys (for
-example, for time-coded flashing-content metadata).</p>
 
 <p class="note">How <a>WebVTT header metadata</a> values are exposed to, and combined with, the
 embedding context is defined by that context. In particular, HTML defines how
@@ -1656,9 +1660,8 @@ all of the following properties:</p>
 <p>A <a>WebVTT header metadata key</a> must additionally satisfy one of the following:</p>
 
 <ul>
- <li>It is one of the reserved key names defined for <a>WebVTT header metadata</a> in
- [[#header-metadata]]: "<code>lang</code>", "<code>kind</code>", "<code>label</code>", or
- "<code>type</code>".</li>
+ <li>It is one of the keys reserved by this specification for <a>WebVTT header metadata</a>;
+ see [[#header-metadata]] for the current list of reserved keys.</li>
  <li>It contains at least one U+002D HYPHEN-MINUS character, and its first character is not a
  U+002D HYPHEN-MINUS character.</li>
 </ul>
@@ -1893,13 +1896,13 @@ have two consecutive <a lt="WebVTT line terminator">WebVTT line terminators</a> 
 or end with a <a>WebVTT line terminator</a>.)</p>
 
 <p><a>WebVTT metadata text</a> cues are typically used by scripted applications (e.g. using the
-<code>metadata</code> <a>text track kind</a> in a HTML <a>text track</a>). Because the cue
-payload is otherwise an opaque string, authors of metadata files delivered outside of an HTML
-context should declare a <a lt="WebVTT header metadata kind">kind</a> of
-"<code>metadata</code>" together with a <a lt="WebVTT header metadata type">type</a>
-identifying the schema in use; see [[#header-metadata]]. Consumers that do not recognise the
-<a lt="WebVTT header metadata type">type</a> value should treat the cue payloads as opaque and
-must not present them as caption or subtitle text.</p>
+<code>metadata</code> <a>text track kind</a> in a HTML <a>text track</a>). Authors of metadata
+files delivered outside of an HTML context should declare a
+<a lt="WebVTT header metadata kind">kind</a> of "<code>metadata</code>" together with a
+<a lt="WebVTT header metadata type">type</a> identifying the schema in use; see
+[[#header-metadata]]. Consumers that do not recognise the
+<a lt="WebVTT header metadata type">type</a> value must not present the cue payloads as
+caption or subtitle text.</p>
 
 
 <h4 id=caption-text>WebVTT caption or subtitle cue text</h4>
@@ -3054,10 +3057,9 @@ string |input|, the user agent must run the following algorithm. The algorithm r
 
 <ol algorithm="collect WebVTT header metadata">
 
- <li><p>Let |metadata| be a new <a>WebVTT header metadata</a> object, with each of its reserved
- keys ("<code>lang</code>", "<code>kind</code>", "<code>label</code>", "<code>type</code>")
- unset and with an empty list of <a lt="unrecognized header metadata pair">unrecognized header
- metadata pairs</a>.</p></li>
+ <li><p>Let |metadata| be a new <a>WebVTT header metadata</a> object, with each of its
+ reserved keys (see [[#header-metadata]]) unset and with an empty list of
+ <a lt="unrecognized header metadata pair">unrecognized header metadata pairs</a>.</p></li>
 
  <li><p>Let |lines| be the result of splitting |input| on U+000A LINE FEED (LF)
  characters.</p></li>
@@ -3080,8 +3082,8 @@ string |input|, the user agent must run the following algorithm. The algorithm r
    CHARACTER TABULATION (tab) characters removed.</p></li>
 
    <li><p>If |name| is not a <a>WebVTT header metadata key</a>, then jump to the step labeled
-   <i>next line</i>. (Invalid lines are ignored individually; they do not invalidate other
-   pairs.)</p></li>
+   <i>next line</i>. Invalid lines are ignored individually; they do not invalidate other
+   pairs.</p></li>
 
    <li><p>Let |value| be the substring of |line| starting from the character immediately after
    |separator index| to the end of |line|, with any leading and trailing U+0020 SPACE and
