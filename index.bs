@@ -3139,11 +3139,10 @@ string |input|, the user agent must run the following algorithm. The algorithm r
 </ol>
 
 <p class="note">String comparisons of key names in this algorithm are exact (i.e.
-<a>case-sensitive</a>). The four reserved keys are defined in lowercase; an input that uses any
+<a>case-sensitive</a>). Reserved keys are defined in lowercase; an input that uses any
 other case (for example "<code>Lang</code>" or "<code>LANG</code>") matches none of the
-reserved-key clauses and is collected as an <a>unrecognized header metadata pair</a> instead.
-Such a pair will only be valid if it also satisfies the hyphen requirement for unrecognized
-keys; otherwise it is ignored.</p>
+reserved-key clauses. Furthermore, because such an input lacks a hyphen, it also fails the
+syntactic requirements for an unreserved key and is therefore ignored by the parser.</p>
 
 <p class="note">Parsers are not required to produce warnings for invalid or unrecognized
 header metadata pairs. Pairs that fail validation are dropped without further effect; pairs
