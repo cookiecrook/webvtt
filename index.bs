@@ -1897,7 +1897,7 @@ or end with a <a>WebVTT line terminator</a>.)</p>
 
 <p><a>WebVTT metadata text</a> cues are typically used by scripted applications (e.g. using the
 <code>metadata</code> <a>text track kind</a> in a HTML <a>text track</a>). Authors of metadata
-files delivered outside of an HTML context should declare a
+files delivered outside of an HTML context may declare a
 <a lt="WebVTT header metadata kind">kind</a> of "<code>metadata</code>" together with a
 <a lt="WebVTT header metadata type">type</a> identifying the schema in use; see
 [[#header-metadata]]. Consumers that do not recognise the
