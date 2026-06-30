@@ -1702,8 +1702,10 @@ with all of the following properties:</p>
 
 <p>A <a>WebVTT header metadata pair</a> whose <a>WebVTT header metadata key</a> is reserved by
 this specification must use a <a>WebVTT header metadata value</a> that conforms to the
-constraints given for that key in [[#header-metadata]]. A given reserved key must not appear
-more than once in a single <a>WebVTT file</a>.</p>
+constraints given for that key in [[#header-metadata]].</p>
+
+<p class="note">Note: Authors should avoid including multiple entries with same key in a single 
+<a>WebVTT file</a>. Only the first such entry will be used, and any subsequent entries ignored.</p>
 
 <p>A <dfn>WebVTT region definition block</dfn> consists of the following components, in the given
 order:</p>
