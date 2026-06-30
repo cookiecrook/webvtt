@@ -1902,9 +1902,7 @@ or end with a <a>WebVTT line terminator</a>.)</p>
 files delivered outside of an HTML context may declare a
 <a lt="WebVTT header metadata kind">kind</a> of "<code>metadata</code>" together with a
 <a lt="WebVTT header metadata type">type</a> identifying the schema in use; see
-[[#header-metadata]]. Consumers that do not recognise the
-<a lt="WebVTT header metadata type">type</a> value must not present the cue payloads as
-caption or subtitle text.</p>
+[[#header-metadata]].</p>
 
 
 <h4 id=caption-text>WebVTT caption or subtitle cue text</h4>
