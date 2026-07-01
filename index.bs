@@ -1666,22 +1666,22 @@ all of the following properties:</p>
  ISOLATE, U+2068 FIRST STRONG ISOLATE, or U+2069 POP DIRECTIONAL ISOLATE.</li>
  <li>It does not contain the substring "<code>--></code>" (U+002D HYPHEN-MINUS, U+002D
  HYPHEN-MINUS, U+003E GREATER-THAN SIGN).</li>
+ <li>It must <em>either</em> match a reserved key, <em>or</em> must match the additional 
+  hyphenated formatting requirements of a custom key:
+  <ul>
+   <li>reserved key: Matches one of the keys reserved by this specification for <a>WebVTT header 
+   metadata</a>; see [[#header-metadata]] for the current list of reserved keys.</li>
+   <li>custom key: contains at least one U+002D HYPHEN-MINUS character, and its first character 
+   is not a U+002D HYPHEN-MINUS character.</li>
+  </ul>
+ </li>
 </ul>
 
-<p>A <a>WebVTT header metadata key</a> must additionally satisfy one of the following:</p>
-
-<ul>
- <li>It is one of the keys reserved by this specification for <a>WebVTT header metadata</a>;
- see [[#header-metadata]] for the current list of reserved keys.</li>
- <li>It contains at least one U+002D HYPHEN-MINUS character, and its first character is not a
- U+002D HYPHEN-MINUS character.</li>
-</ul>
-
-<p class="note">The hyphen requirement only applies to keys that are not reserved by this
-specification. It reserves the hyphen-free key-name space for future standardization (for
-example, by the taxonomies anticipated in
-<a href="https://github.com/w3c/webvtt/issues/512">WebVTT issue #512</a>). Reserved keys
-themselves (such as "<code>lang</code>") have no hyphen and remain valid.</p>
+<p class="note">The hyphenated requirement only applies to custom keys that are not reserved by 
+this specification, such as "data-foo". It allows application-specific usage while reserving
+the hyphen-free namespace for future standardization (for example, by the taxonomies anticipated 
+in <a href="https://github.com/w3c/webvtt/issues/512">WebVTT issue #512</a>). Reserved keys 
+(such as "<code>lang</code>") have no hyphen and remain valid.</p>
 
 <p class="note">Keys are matched in a <a>case-sensitive</a> manner. Authors must use the
 lowercase form of reserved keys.</p>
