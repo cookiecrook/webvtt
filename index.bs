@@ -1666,21 +1666,21 @@ all of the following properties:</p>
  ISOLATE, U+2068 FIRST STRONG ISOLATE, or U+2069 POP DIRECTIONAL ISOLATE.</li>
  <li>It does not contain the substring "<code>--></code>" (U+002D HYPHEN-MINUS, U+002D
  HYPHEN-MINUS, U+003E GREATER-THAN SIGN).</li>
- <li>It must <em>either</em> match a reserved key, <em>or</em> must match the additional 
+ <li>It must <em>either</em> match a reserved key, <em>or</em> must match the additional
   hyphenated formatting requirements of a custom key:
   <ul>
-   <li>reserved key: Matches one of the keys reserved by this specification for <a>WebVTT header 
+   <li>reserved key: Matches one of the keys reserved by this specification for <a>WebVTT header
    metadata</a>; see [[#header-metadata]] for the current list of reserved keys.</li>
-   <li>custom key: contains at least one U+002D HYPHEN-MINUS character, and its first character 
+   <li>custom key: contains at least one U+002D HYPHEN-MINUS character, and its first character
    is not a U+002D HYPHEN-MINUS character.</li>
   </ul>
  </li>
 </ul>
 
-<p class="note">The hyphenated requirement only applies to custom keys that are not reserved by 
+<p class="note">The hyphenated requirement only applies to custom keys that are not reserved by
 this specification, such as "data-foo". It allows application-specific usage while reserving
-the hyphen-free namespace for future standardization (for example, by the taxonomies anticipated 
-in <a href="https://github.com/w3c/webvtt/issues/512">WebVTT issue #512</a>). Reserved keys 
+the hyphen-free namespace for future standardization (for example, by the taxonomies anticipated
+in <a href="https://github.com/w3c/webvtt/issues/512">WebVTT issue #512</a>). Reserved keys
 (such as "<code>lang</code>") have no hyphen and remain valid.</p>
 
 <p class="note">Keys are matched in a <a>case-sensitive</a> manner. Authors must use the
@@ -1715,7 +1715,7 @@ with all of the following properties:</p>
 this specification must use a <a>WebVTT header metadata value</a> that conforms to the
 constraints given for that key in [[#header-metadata]].</p>
 
-<p class="note">Note: Authors should avoid including multiple entries with same key in a single 
+<p class="note">Note: Authors should avoid including multiple entries with same key in a single
 <a>WebVTT file</a>. Only the first such entry will be used, and any subsequent entries ignored.</p>
 
 <p>A <dfn>WebVTT region definition block</dfn> consists of the following components, in the given
