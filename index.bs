@@ -344,6 +344,7 @@ CSS comment (e.g. <code>/**/</code>).</p>
 
  <pre>
  WEBVTT
+
  STYLE
  ::cue {
    background-image: linear-gradient(to bottom, dimgray, lightgray);
@@ -1372,6 +1373,7 @@ fragment:</p>
 
    <pre>
    WEBVTT
+
    00:00:00.000 --> 00:00:05.000 align:start
    Hello!
    <bdo dir=ltr>&#x5E9;&#x5DC;&#x5D5;&#x5DD;!</bdo>
