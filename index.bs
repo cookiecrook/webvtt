@@ -372,7 +372,7 @@ CSS comment (e.g. <code>/**/</code>).</p>
 
 <p><i>This section is non-normative.</i></p>
 
-<p>A WebVTT file may include file-level metadata as key/value pairs on the lines immediately
+<p>A WebVTT file can include file-level metadata as key/value pairs on the lines immediately
 following the <code>WEBVTT</code> file header line. This is most useful for disambiguating the
 track <code>kind</code> and identifying the metadata schema in use, particularly for files
 delivered outside of an HTML context where a containing <code>&lt;track&gt;</code> element
@@ -1668,10 +1668,10 @@ all of the following properties:</p>
  ISOLATE, U+2068 FIRST STRONG ISOLATE, or U+2069 POP DIRECTIONAL ISOLATE.</li>
  <li>It does not contain the substring "<code>--></code>" (U+002D HYPHEN-MINUS, U+002D
  HYPHEN-MINUS, U+003E GREATER-THAN SIGN).</li>
- <li>It must <em>either</em> match a reserved key, <em>or</em> must match the additional
+ <li>It is <em>either</em> a reserved key, <em>or</em> matches the additional
   hyphenated formatting requirements of a custom key:
   <ul>
-   <li>reserved key: Matches one of the keys reserved by this specification for <a>WebVTT header
+   <li>reserved key: one of the keys reserved by this specification for <a>WebVTT header
    metadata</a>; see [[#header-metadata]] for the current list of reserved keys.</li>
    <li>custom key: contains at least one U+002D HYPHEN-MINUS character, and its first character
    is not a U+002D HYPHEN-MINUS character.</li>
@@ -1685,7 +1685,7 @@ the hyphen-free namespace for future standardization (for example, by the taxono
 in <a href="https://github.com/w3c/webvtt/issues/512">WebVTT issue #512</a>). Reserved keys
 (such as "<code>lang</code>") have no hyphen and remain valid.</p>
 
-<p class="note">Keys are matched in a <a>case-sensitive</a> manner. Authors must use the
+<p>Keys are matched in a <a>case-sensitive</a> manner. Authors must use the
 lowercase form of reserved keys.</p>
 
 <p>A <dfn>WebVTT header metadata separator</dfn> is one of the following:</p>
@@ -3154,9 +3154,9 @@ string |input|, the user agent must run the following algorithm. The algorithm r
 </ol>
 
 <p class="note">String comparisons of key names in this algorithm are exact (i.e.
-<a>case-sensitive</a>). Reserved keys are defined in lowercase; an input that uses any
-other case (for example "<code>Lang</code>" or "<code>LANG</code>") matches none of the
-reserved-key clauses. Furthermore, because such an input lacks a hyphen, it also fails the
+<a>case-sensitive</a>). Reserved keys are defined exactly; an input that uses any
+other case (for example "<code>Lang</code>" or "<code>LANG</code>" matches none of the
+reserved-key clauses). Furthermore, because such an input lacks a hyphen, it also fails the
 syntactic requirements for an unreserved key and is therefore ignored by the parser.</p>
 
 <p class="note">Parsers are not required to produce warnings for invalid or unrecognized
