@@ -2679,8 +2679,8 @@ chapters, or metadata. Most of the steps will be skipped for chapters or metadat
 <h3 id=file-parsing algorithm>WebVTT file parsing</h3>
 
 <p>A <dfn>WebVTT parser</dfn>, given an input byte stream, a <a>text track list of cues</a>
-|output|, a collection of <a spec=cssom>CSS style sheets</a> |stylesheets|, and optionally a
-slot |header metadata| for a <a>WebVTT header metadata</a> object, must decode the byte stream
+|output|, a collection of <a spec=cssom>CSS style sheets</a> |stylesheets|, and optionally
+|header metadata| for a <a>WebVTT header metadata</a> object, must decode the byte stream
 using the <a lt="UTF-8 decode">UTF-8 decode</a> algorithm, and then must parse the resulting
 string according to the <a>WebVTT parser algorithm</a> below. This results in <a>WebVTT cues</a>
 being added to |output|, <a spec=cssom>CSS style sheets</a> being added to |stylesheets|, and,
