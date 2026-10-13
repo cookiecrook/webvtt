@@ -1616,7 +1616,7 @@ with the <a>MIME type</a> <code>text/vtt</code>. [[!RFC3629]]</p>
  <li>Zero or more <a lt="WebVTT header metadata pair">WebVTT header metadata pairs</a>, each
  followed by a <a>WebVTT line terminator</a>.</li>
 
- <li>One or more <a lt="WebVTT line terminator">WebVTT line terminators</a> to separate the file
+ <li>One additional <a lt="WebVTT line terminator">WebVTT line terminator</a> to separate the file
  header from the rest of the body.</li>
 
  <li>Zero or more <a lt="WebVTT region definition block">WebVTT region definition blocks</a>, <a
